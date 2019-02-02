@@ -20,13 +20,19 @@ gem 'bootstrap-sass'
 gem 'duktape'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'rubocop-airbnb'
-  gem "factory_bot_rails"
+  gem 'factory_bot_rails'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -34,6 +40,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
