@@ -5,11 +5,15 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
+    auth_options = { :recall => 'static_pages#home', :scope => :user }
+    resource = warden.authenticate!(auth_options)
     super
   end
 
   # POST /resource/sign_in
   def create
+    auth_options = { :recall => 'static_pages#home', :scope => :user }
+    resource = warden.authenticate!(auth_options)
     super
   end
 

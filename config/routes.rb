@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  
-  get '/' => 'static_pages#home'
+
+  get '/' => 'static_pages#home', as: 'root'
+  resources :users, :only => [:show]
 end

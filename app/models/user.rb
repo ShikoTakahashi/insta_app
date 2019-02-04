@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook]
   validates :full_name, presence: true, length: { maximum: 50 }
   validates :user_name, presence: true, length: { maximum: 50 }
+  validate  :picture_size
+  mount_uploader :profpicture, PictureUploader
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
@@ -20,6 +22,14 @@ class User < ApplicationRecord
         user.provider = data["provider"] if user.provider.blank?
         user.uid = data["uid"] if user.uid.blank?
       end
+    end
+  end
+
+  private
+
+  def picture_size
+    if profpicture.size > 5.megabytes
+      errors.add(:profpicture, "5MB以上のファイルはアップロードできません")
     end
   end
 end

@@ -10,11 +10,15 @@
   </head>
 
   <body>
-    <div class="notice">
-      <%= notice %>
-    </div>
-    <div class="alert">
-      <%= alert %>
+    <% if user_signed_in? %>
+      <div class="header_area">
+        <%= render 'layouts/header' %>
+      </div>
+    <% end %>
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
     </div>
     <%= yield %>
   </body>

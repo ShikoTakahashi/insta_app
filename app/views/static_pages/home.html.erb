@@ -1,4 +1,21 @@
-<%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-<h1>home</h1>
-<div>name: <%= current_user.user_name %></div>
-<div>email: <%= current_user.email %></div>
+<% provide(:title, 'ホーム') %>
+<% if user_signed_in?%>
+  <div>name: <%= current_user.user_name %></div>
+  <div>email: <%= current_user.email %></div>
+<% else %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="login_box">
+        <h1>Instagram-Test</h1>
+        <%= render 'users/sessions/new' %>
+        <p>または</p>
+        <%= link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, class: "btn btn-primary btn-block" %><br>
+        <%= link_to 'パスワードをお忘れた場合', new_user_password_path%><br>
+      </div>
+      <div class="login_box">
+        <p>アカウントをお持ちでないですか？</p>
+        <%= link_to 'Facebookで登録する', user_facebook_omniauth_authorize_path %>
+      </div>
+    </div>
+  </div>
+<% end %>

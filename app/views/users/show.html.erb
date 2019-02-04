@@ -1,0 +1,15 @@
+<% provide(:title, 'マイページ') %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <section class="show-image">
+      <% if @user.profpicture? %>
+        <%= image_tag @user.profpicture.url, :size =>'150x150' %>
+      <% else %>
+        <%= image_tag "/user_icon/first_user_icon.png", :size =>'150x150' %>
+      <% end %>
+    </section>
+    <div class="Profile-name" id="side"><%= @user.user_name %></div><%= link_to 'プロフィールを編集', edit_user_registration_path, class: "btn btn-primary" %>
+    <%= render "/users/shared/user_info" %><br>
+    <%= @user.full_name %>
+  </div>
+</div>
