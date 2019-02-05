@@ -47,5 +47,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:account_update, keys: [:password])
     devise_parameter_sanitizer.permit(:account_update, keys: [:password_confirmation])
     devise_parameter_sanitizer.permit(:account_update, keys: [:profpicture])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:comment])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:website])
   end
 end

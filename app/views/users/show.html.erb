@@ -1,4 +1,4 @@
-<% provide(:title, 'マイページ') %>
+<% provide(:title, "#{@user.user_name}のページ") %>
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <section class="show-image">
@@ -8,8 +8,21 @@
         <%= image_tag "/user_icon/first_user_icon.png", :size =>'150x150' %>
       <% end %>
     </section>
-    <div class="Profile-name" id="side"><%= @user.user_name %></div><%= link_to 'プロフィールを編集', edit_user_registration_path, class: "btn btn-primary" %>
+    <div class="Profile-name" id="side"><%= @user.user_name %></div>
+    <% if @user == current_user %>
+      <%= link_to 'プロフィールを編集', edit_user_registration_path, class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to 'フォローする', '#', class: "btn btn-primary" %>
+    <% end %>
     <%= render "/users/shared/user_info" %><br>
-    <%= @user.full_name %>
+    <h4><%= @user.full_name %></h4>
+    <section class="user-comment">
+      <% if @user.comment? %>
+        <%= simple_format(@user.comment) %>
+      <% end %>
+      <% if @user.website? %>
+        <%= link_to "#{@user.website}", "#{@user.website}", :target=>["_blank"] %>
+      <% end %>
+    </section>
   </div>
 </div>

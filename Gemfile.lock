@@ -423,6 +423,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     retriable (3.1.2)
+    rmagick (2.16.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.2)
@@ -556,6 +557,7 @@ DEPENDENCIES
   pg
   puma (~> 3.11)
   rails (~> 5.2.2)
+  rmagick
   rspec-rails
   rubocop-airbnb
   sass-rails (~> 5.0)

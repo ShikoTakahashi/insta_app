@@ -7,35 +7,37 @@
     <%= devise_error_messages! %>
 
     <div class="field">
-      <%= f.label :full_name %><br />
+      <%= f.label :full_name %>
       <%= f.text_field :full_name, autofocus: true, autocomplete: "off", class: 'form-control' %>
     </div>
     <div class="field">
       <%= f.label :user_name %><br />
-      <%= f.text_field :user_name, autofocus: true, autocomplete: "off", class: 'form-control' %>
+      <%= f.text_field :user_name, autocomplete: "off", class: 'form-control' %>
     </div>
-
+    <div class="field">
+      <%= f.label :website, "ウェブサイト" %><br />
+      <%= f.text_field :website, class: 'form-control' %>
+    </div>
+    <div class="field">
+      <%= f.label :comment, "自己紹介" %><br />
+      <%= f.text_area :comment, class: 'form-control' %>
+    </div>
     <div class="field">
       <%= f.label :profpicture, "プロフィール画像" %><br />
       <%= f.file_field :profpicture, accept: 'image/jpeg,image/png', class: 'form-control' %>
     </div>
-
+    <p>非公開情報</p>
     <div class="field">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
     </div>
-
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
     <% end %>
-
+    <p>パスワードを変更</p>
     <div class="field">
-      <%= f.label :password %> <i>変更する場合のみ入力してください</i><br />
+      <%= f.label :password %> <i>変更する場合のみ入力してください（6字以上）</i><br />
       <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
-      <% if @minimum_password_length %>
-        <br />
-        <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-      <% end %>
     </div>
 
     <div class="field">

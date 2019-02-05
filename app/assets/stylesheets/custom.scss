@@ -58,6 +58,10 @@ p {
   background-color: #BAD3FF;
   color: #0000CD;
   text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
 }
 
 .alert {
@@ -106,8 +110,9 @@ p {
 /*showでのユーザー表示*/
 .show-image {
   float:left;
-  margin-left: 60px;
+  margin-left: 100px;
   margin-right: 60px;
+  border-radius: 50%;
 }
 
 .stats {

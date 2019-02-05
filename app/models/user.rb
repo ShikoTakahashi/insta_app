@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook]
   validates :full_name, presence: true, length: { maximum: 50 }
   validates :user_name, presence: true, length: { maximum: 50 }
+  validates :website, length: { maximum: 100 }, :format => URI::regexp(%w(http https)), allow_blank: true
+  validates :comment, length: { maximum: 140 }
   validate  :picture_size
   mount_uploader :profpicture, PictureUploader
 

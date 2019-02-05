@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'rmagick'
 gem 'bcrypt'
 gem 'faker'
 gem 'will_paginate'
