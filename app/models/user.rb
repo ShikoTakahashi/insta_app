@@ -1,12 +1,12 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :microposts, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
   validates :full_name, presence: true, length: { maximum: 50 }
   validates :user_name, presence: true, length: { maximum: 50 }
-  validates :website, length: { maximum: 100 }, :format => URI::regexp(%w(http https)), allow_blank: true
+  validates :website, length: { maximum: 100 }, :format => URI::regexp(%w(http https)),
+                      allow_blank: true
   validates :comment, length: { maximum: 140 }
   validate  :picture_size
   mount_uploader :profpicture, PictureUploader
@@ -17,7 +17,8 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.user_attributes"] && session["devise.user_attributes"]["extra"]["raw_info"]
+      if data = session["devise.user_attributes"] &&
+        session["devise.user_attributes"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
       end
       if data = session["devise.user_attributes"]
@@ -25,6 +26,10 @@ class User < ApplicationRecord
         user.uid = data["uid"] if user.uid.blank?
       end
     end
+  end
+
+  def feed
+    Micropost.where("user_id = ?", id)
   end
 
   private

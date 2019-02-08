@@ -1,7 +1,7 @@
 <div class="stats">
   <a>
     <%= link_to @user do %>
-      <strong id="plan" class="stat">投稿0件</strong>
+      <strong id="plan" class="stat">投稿<%= @user.microposts.count %>件</strong>
     <%end%>
   </a>
   <a href="#">

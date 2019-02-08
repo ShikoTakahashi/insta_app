@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   }
 
   get '/' => 'static_pages#home', as: 'root'
-  resources :users, :only => [:show]
+  resources :users, only: [:show]
+  resources :microposts, only: [:new, :show, :create, :destroy]
 end

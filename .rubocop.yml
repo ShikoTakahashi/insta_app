@@ -11,6 +11,7 @@ AllCops:
     - 'config/initializers/*'
     - 'config/spring.rb'
     - 'config/routes.rb'
+    - 'config/puma.rb'
     - 'lib/tasks/*'
     - 'vendor/**/*'
     - 'path/ruby'

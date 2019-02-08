@@ -53,6 +53,7 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
+
 //flash,システムメッセージ
 .notice {
   background-color: #BAD3FF;
@@ -69,6 +70,21 @@ p {
   color: #FF3333;
   text-align: center;
 }
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
 //header
 .header_area {
   margin-bottom: 50px;
@@ -81,6 +97,26 @@ p {
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
+}
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+.footer{
+  margin-top:100px;
+  width:100%;
+  background:#EEEEEE;
+}
+
+/* forms */
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
 }
 
 //ログインボックス
@@ -137,4 +173,37 @@ p {
   strong {
     display: block;
   }
+}
+
+.microposts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+.micropost_picture {
+  width: 270px;
+  height: 270px;
+  object-fit: cover;
+  border: solid 1px #808080; /* 枠線のスタイル 太さ 色 */
+  margin: 10px;
+}
+.micropost_picture:hover {
+  border: solid 1px #808080; /* 枠線のスタイル 太さ 色 */
+  box-shadow: 0px 0px 5px #808080;
+}
+
+.modal_picture {
+  display: inline;
+  float: left;
+  width: 50%;
+  max-height: 50%;
+  margin-left: 0;
+  margin-bottom: 5px;
+}
+.modal_username {
+  text-align: left;
+}
+.modal_content {
+  padding: 10px;
 }

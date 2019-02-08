@@ -1,0 +1,8 @@
+<% if @feed_items.any? %>
+  <div class="microposts">
+    <% @feed_items.each do |micropost|%>
+      <%= image_tag(micropost.picture.url, :class => "micropost_picture") %>
+    <% end %>
+  </div>
+<% end %>
+<%= will_paginate @feed_items, :previous_label => ' &lt 前へ', :next_label => '次へ &gt', :class => "center" %>
