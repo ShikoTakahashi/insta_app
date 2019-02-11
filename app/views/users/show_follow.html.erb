@@ -1,0 +1,33 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+      <ul class="users follow" style="list-style: none;">
+        <% @users.each do |user| %>
+        <li>
+          <section class="profile_picture">
+            <%= render partial: '/users/shared/small_user_profpicture', :locals => { user: user } %>
+          </section>
+            <section class="user_name" id="side">
+              <%= link_to user.user_name, user %><br>
+              <%= user.full_name %>
+            </section>
+            <% if @user == current_user %>
+              <div style="display:inline-flex;">
+                <%= render partial: '/users/shared/mypage_follow_form', :locals => { user: user } %>
+              </div>
+            <% else %>
+              <% unless user == current_user %>
+                <div style="display:inline-flex;">
+                  <%= render '/users/shared/follow_form' %>
+                </div>
+              <% end %>
+            <% end %>
+          </li>
+        <% end%>
+      </ul>
+      <%= will_paginate %>
+    <% end %>
+  </div>
+</div>

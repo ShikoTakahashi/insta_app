@@ -1,0 +1,5 @@
+<% if user.profpicture? %>
+  <%= image_tag user.profpicture.url, :size =>'50x50' %>
+<% else %>
+  <%= image_tag "/user_icon/first_user_icon.png", :size =>'50x50' %>
+<% end %>

@@ -1,18 +1,16 @@
 <% provide(:title, "#{@user.user_name}のページ") %>
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <section class="show-image">
-      <% if @user.profpicture? %>
-        <%= image_tag @user.profpicture.url, :size =>'150x150' %>
-      <% else %>
-        <%= image_tag "/user_icon/first_user_icon.png", :size =>'150x150' %>
-      <% end %>
+    <section class="profile_picture">
+      <%= render '/users/shared/user_profpicture'%>
     </section>
     <div class="Profile-name" id="side"><%= @user.user_name %></div>
     <% if @user == current_user %>
       <%= link_to 'プロフィールを編集', edit_user_registration_path, class: "btn btn-primary" %>
     <% else %>
-      <%= link_to 'フォローする', '#', class: "btn btn-primary" %>
+    <div style="display:inline-flex">
+      <%= render '/users/shared/follow_form' %>
+    </div>
     <% end %>
     <%= render "/users/shared/user_info" %><br>
     <h4><%= @user.full_name %></h4>
@@ -29,33 +27,9 @@
       <% if @microposts.any? %>
         <% @microposts.each do |micropost|%>
           <a data-toggle="modal" data-target="#<%= micropost.id %>" class="modal-open" >
-            <%= image_tag(micropost.picture.url, :class => "micropost_picture") %>
+            <%= image_tag(micropost.picture.url, :class => "micropost_picture") unless micropost.picture.url.nil? %>
           </a>
-          <div id="<%= micropost.id %>" class="modal fade myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-body">
-                  <div class="left">
-                    <%= image_tag(micropost.picture.url, :class => "modal_picture") %>
-                  </div>
-                  <% if micropost.content != nil %>
-                    <section class="modal_content">
-                      <%= link_to micropost.user.user_name, micropost.user %>
-                      <%= micropost.content %>
-                    </section>
-                  <% end %>
-                  <%= form_for @new_micropost do |f|%>
-                    <%= render 'shared/error_messages', object: f.object %>
-                    <div class="field">
-                      <%= f.text_area :content, placeholder: "コメントを書いてみよう！（140文字以内）" %>
-                    </div>
-                        <%= f.submit "シェア", class: "btn btn-primary" %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- / モーダル部分-->
+          <%= render partial: 'shared/modal_micropost', :locals => { micropost: micropost } %>
         <% end %>
       <% end %>
     </div>

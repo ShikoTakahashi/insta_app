@@ -1,7 +1,23 @@
 <% if @feed_items.any? %>
   <div class="microposts">
     <% @feed_items.each do |micropost|%>
-      <%= image_tag(micropost.picture.url, :class => "micropost_picture") %>
+      <% unless micropost.picture.url.nil? %>
+        <section data-toggle="modal" data-target="#<%= micropost.id %>" class="card modal-open">
+          <p class="card-title">
+            <% if micropost.user.profpicture? %>
+              <%= image_tag micropost.user.profpicture.url, :size =>'50x50' %>
+            <% else %>
+              <%= image_tag "/user_icon/first_user_icon.png", :size =>'50x50' %>
+            <% end %>
+            <%= link_to micropost.user.user_name, micropost.user %>
+          </p>
+          <%= image_tag(micropost.picture.url, :class => "card-img") %>
+          <div class="card-content">
+            <p class="card-text"><%= micropost.content %></p>
+          </div>
+        </section>
+        <%= render partial: 'shared/modal_micropost', :locals => { micropost: micropost } %>
+      <% end %>
     <% end %>
   </div>
 <% end %>

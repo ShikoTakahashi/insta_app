@@ -1,0 +1,7 @@
+<div id="follow_form" class="follow_button">
+  <% if current_user.following?(user) %>
+    <%= render partial: '/users/shared/mypage_unfollow', :locals => { user: user} %>
+  <% else %>
+    <%= render partial: '/users/shared/mypage_follow', :locals => { user: user} %>
+  <% end %>
+</div>

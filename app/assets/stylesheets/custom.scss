@@ -19,7 +19,10 @@ textarea {
   margin-top: 10px;
   text-align: center;
 }
-
+.right {
+  margin-top: 10px;
+  text-align: right;
+}
 .center h1 {
   margin-bottom: 10px;
 }
@@ -85,6 +88,13 @@ p {
     color: $state-danger-text;
   }
 }
+//プロフィール変更ページで使用
+.attention_box {
+    padding: 0.5em 1em;
+    margin-top: 2em;
+    font-weight: bold;
+    border: solid 5px #FF8856;
+}
 //header
 .header_area {
   margin-bottom: 50px;
@@ -130,11 +140,13 @@ input, textarea, select, .uneditable-input {
   border-color: #eee;
   text-align: center;
 }
-
+//ボタン関係
 .btn_position {
   margin-top: 20px;
 }
-
+.follow_button {
+  display: inline;
+}
 /* Users index */
 .Profile-name {
   font-size: 200%;
@@ -142,9 +154,15 @@ input, textarea, select, .uneditable-input {
   margin-right: 20px;
   font-family: 'monospace', SimSun;
 }
-
-/*showでのユーザー表示*/
-.show-image {
+//一覧表される場合のユーザー名
+.user_name {
+  font-size: 100%;
+  font-weight: 600;
+  padding-top: 5px;
+  font-family: 'monospace', SimSun;
+}
+/*プロフィールの画像表示*/
+.profile_picture {
   float:left;
   margin-left: 100px;
   margin-right: 60px;
@@ -197,7 +215,7 @@ input, textarea, select, .uneditable-input {
   display: inline;
   float: left;
   width: 50%;
-  max-height: 50%;
+  max-height: 30%;
   margin-left: 0;
   margin-bottom: 5px;
 }
@@ -206,4 +224,37 @@ input, textarea, select, .uneditable-input {
 }
 .modal_content {
   padding: 10px;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 350px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #ccc;
+  margin: 5px auto;
+}
+.card-img {
+  border-radius: 5px 5px 0 0;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+.card-content {
+  padding: 20px;
+}
+.card-profile {
+  font-size: 20px;
+  margin-bottom: 40px;
+  text-align: left;
+  color: #333;
+  float:left;
+  border-radius: 50%;
+}
+.card-text {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.5;
 }
