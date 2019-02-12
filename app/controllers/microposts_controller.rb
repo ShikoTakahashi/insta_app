@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :show, :create, :destory]
+  before_action :authenticate_user!
   before_action :correct_user, only: :destroy
 
   def new
@@ -13,6 +13,12 @@ class MicropostsController < ApplicationController
     else
       render 'static_pages/home'
     end
+  end
+
+  def search
+    @search_microposts = Micropost.search(params[:search]).paginate(page: params[:page],per_page: 9)
+    @user = current_user
+    @new_replaypost  = current_user.replayposts.build
   end
 
   def create

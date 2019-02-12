@@ -9,6 +9,8 @@
           <div class="right">
             <%= link_to('シェアを削除', micropost_path(micropost.id), data: { confirm: "本当に削除してもよろしいですか？" },
             method: :delete, class: "btn btn-primary") if current_user == micropost.user %>
+            <%= render(partial: '/favorites/favorite_form',
+            :locals => { micropost: micropost }) unless current_user == micropost.user %>
           </div>
           <% unless micropost.content.nil? %>
             <section class="modal_content">

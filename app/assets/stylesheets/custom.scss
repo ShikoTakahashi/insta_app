@@ -227,18 +227,14 @@ input, textarea, select, .uneditable-input {
 }
 
 .card {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 350px;
+  width: 500px;
   background: #fff;
   border-radius: 5px;
-  box-shadow: 0 2px 5px #ccc;
-  margin: 5px auto;
+  box-shadow: 0 2px 5px #999;
+  margin: 10px auto;
 }
 .card-img {
-  border-radius: 5px 5px 0 0;
-  max-width: 100%;
+  width: 500px;
   height: auto;
   margin: 0 auto;
 }
@@ -257,4 +253,18 @@ input, textarea, select, .uneditable-input {
   color: #777;
   font-size: 14px;
   line-height: 1.5;
+}
+.favorite_button {
+  float: right;
+  text-align: center;
+  width: 50%;
+  height: 50px;
+  padding-left: 35%;
+  padding-right: 5px;
+  margin-bottom: -20px;
+
+}
+
+.search_box {
+  margin-top: 13px
 }
