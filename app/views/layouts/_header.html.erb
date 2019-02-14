@@ -13,10 +13,10 @@
       <ul id="navbar" class="nav navbar-nav navbar-right navbar-collapse collapse">
         <li class="search_box">
           <%= form_tag(microposts_search_path, :method => 'get') do %>
-            <%= text_field_tag :search %></li>
-            <li class="search_box"><%= submit_tag '検索', :content => nil %>
+            <%= text_field_tag :search, "", {class: "search_form"} %>
+            <%= submit_tag '検索', :content => nil, :id => 'submit_btn' %>
           <% end %>
-       </li>
+        </li>
         <li><%= link_to "通知", '#' %></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">

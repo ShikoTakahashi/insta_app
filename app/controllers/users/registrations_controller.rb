@@ -49,5 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:account_update, keys: [:profpicture])
     devise_parameter_sanitizer.permit(:account_update, keys: [:comment])
     devise_parameter_sanitizer.permit(:account_update, keys: [:website])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:phone_number])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:sex])
   end
 end

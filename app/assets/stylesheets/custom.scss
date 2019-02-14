@@ -200,8 +200,8 @@ input, textarea, select, .uneditable-input {
   margin-top: 50px;
 }
 .micropost_picture {
-  width: 270px;
-  height: 270px;
+  width: 290px;
+  height: 290px;
   object-fit: cover;
   border: solid 1px #808080; /* 枠線のスタイル 太さ 色 */
   margin: 10px;
@@ -266,5 +266,20 @@ input, textarea, select, .uneditable-input {
 }
 
 .search_box {
-  margin-top: 13px
+  margin-top: 11px;
+}
+.search_form{
+  margin-right: 5px;
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+}
+#submit_btn{
+  float: right;
+  width: 50px;
+  height: 30px;
+  border-radius: 10px;
+}
+#submit_btn:active{
+  background-color: #BAD3FF;
 }

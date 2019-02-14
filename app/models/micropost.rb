@@ -10,7 +10,6 @@ class Micropost < ApplicationRecord
   validate  :picture_size
   mount_uploader :picture, PictureUploader
 
-
   def favorite_post(user)
     favorites.create(user_id: user.id)
   end
@@ -25,8 +24,9 @@ class Micropost < ApplicationRecord
 
   def self.search(search)
     if search
-      Micropost.joins("LEFT OUTER JOIN replayposts ON microposts.id = replayposts.micropost_id")
-      .where(["replayposts.content LIKE ? OR microposts.content LIKE ?", "%#{search}%", "%#{search}%"])
+      Micropost.joins("LEFT OUTER JOIN replayposts ON microposts.id = replayposts.micropost_id").
+        where("replayposts.content LIKE ? OR microposts.content LIKE ?",
+              "%#{search}%", "%#{search}%")
     else
       Micropost.all
     end

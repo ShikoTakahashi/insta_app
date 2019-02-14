@@ -7,8 +7,8 @@ class MicropostsController < ApplicationController
   end
 
   def show
-    @micropost = current_user.microposts.build
-    if @current_post = Micropost.find_by(id: params[:id])
+    @current_post = Micropost.find_by(id: params[:id])
+    if @current_post
       @user = User.find_by(id: @current_post.user_id)
     else
       render 'static_pages/home'
@@ -16,9 +16,10 @@ class MicropostsController < ApplicationController
   end
 
   def search
-    @search_microposts = Micropost.search(params[:search]).paginate(page: params[:page],per_page: 9)
+    @search_microposts =
+      Micropost.search(params[:search]).paginate(page: params[:page], per_page: 9)
     @user = current_user
-    @new_replaypost  = current_user.replayposts.build
+    @new_replaypost = current_user.replayposts.build
   end
 
   def create
