@@ -36,7 +36,4 @@
 # アップロードされたテスト画像を無視する
 /public/uploads
 
-/.DS_Store
-/*/.DS_Store
-/*/**/.DS_Store
-/*/**/***/.DS_Store
+.DS_Store
