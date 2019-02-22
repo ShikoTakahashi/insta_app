@@ -1,0 +1,36 @@
+<% unless micropost.picture.url.nil? %>
+  <div id="<%= micropost.id %>" class="modal fade myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="left">
+            <%= image_tag(micropost.picture.url, :class => "modal_picture") %>
+          </div>
+          <div class="right">
+            <%= link_to('シェアを削除', micropost_path(micropost.id), data: { confirm: "本当に削除してもよろしいですか？" },
+            method: :delete, class: "btn btn-primary") if current_user == micropost.user %>
+            <%= render(partial: '/favorites/favorite_form',
+            :locals => { micropost: micropost }) unless current_user == micropost.user %>
+          </div>
+          <% unless micropost.content.nil? %>
+            <section class="modal_content">
+              <%= link_to micropost.user.user_name, micropost.user %>
+              <%= micropost.content %><br>
+            </section>
+          <% end %>
+          <% if replayposts = Replaypost.where(micropost_id: micropost.id) %>
+            <section class="modal_content">
+              <% replayposts.each do |replaypost| %>
+                <%= link_to replaypost.user.user_name, replaypost.user %>
+                <%= replaypost.content %>
+                <%= link_to('【削除】', replaypost_path(replaypost.id), data: { confirm: "本当に削除してもよろしいですか？" },
+                method: :delete) if current_user == replaypost.user %><br>
+              <% end %>
+            </section>
+          <% end %>
+          <%= render partial: 'replayposts/replay_form' , :locals => { micropost: micropost } %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

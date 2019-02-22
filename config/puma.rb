@@ -11,6 +11,13 @@ threads threads_count, threads_count
 #
 port        ENV.fetch("PORT") { 3000 }
 
+if ENV.fetch('RAILS_ENV') { 'development' } == 'development'
+  ssl_bind '0.0.0.0', '9292', {
+    key: 'tmp/server.key',
+    cert: 'tmp/server.crt'
+  }
+end
+
 # Specifies the `environment` that Puma will run in.
 #
 environment ENV.fetch("RAILS_ENV") { "development" }

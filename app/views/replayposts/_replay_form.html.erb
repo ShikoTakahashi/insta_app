@@ -1,0 +1,8 @@
+<%= form_for(@new_replaypost, :url => {:controller => :replayposts, :action => :create}) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "コメントを書いてみよう！（140文字以内）" %>
+  </div>
+  <%= f.hidden_field :micropost_id, :value => micropost.id %>
+    <%= f.submit "投稿", class: "btn btn-primary" %>
+<% end %>

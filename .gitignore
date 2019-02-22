@@ -29,3 +29,11 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+#環境変数を格納しているため除外
+/.env
+
+# アップロードされたテスト画像を無視する
+/public/uploads
+
+.DS_Store

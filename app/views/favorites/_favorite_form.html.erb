@@ -1,0 +1,7 @@
+<div id="favorite_form-<%= micropost.id %>" class="favorite_button">
+  <% if micropost.favorite_post?(current_user) %>
+    <%= render partial: '/favorites/unfavorite_post', :locals => { micropost: micropost } %>
+  <% else %>
+    <%= render partial: '/favorites/favorite_post', :locals => { micropost: micropost } %>
+  <% end %>
+</div>

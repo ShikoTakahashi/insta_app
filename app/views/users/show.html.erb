@@ -1,0 +1,38 @@
+<% provide(:title, "#{@user.user_name}のページ") %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <section class="profile_picture">
+      <%= render '/users/shared/user_profpicture'%>
+    </section>
+    <div class="Profile-name" id="side"><%= @user.user_name %></div>
+    <% if @user == current_user %>
+      <%= link_to 'プロフィールを編集', edit_user_registration_path, class: "btn btn-primary" %>
+    <% else %>
+    <div style="display:inline-flex">
+      <%= render '/users/shared/follow_form' %>
+    </div>
+    <% end %>
+    <%= render "/users/shared/user_info" %><br>
+    <h4><%= @user.full_name %></h4>
+    <section class="user-comment">
+      <% if @user.comment? %>
+        <%= simple_format(@user.comment) %>
+      <% end %>
+      <% if @user.website? %>
+        <%= link_to "#{@user.website}", "#{@user.website}", :target=>["_blank"] %>
+      <% end %>
+    </section>
+    <h2>投稿</h2>
+    <div class="microposts">
+      <% if @microposts.any? %>
+        <% @microposts.each do |micropost|%>
+          <a data-toggle="modal" data-target="#<%= micropost.id %>" class="modal-open" >
+            <%= image_tag(micropost.picture.url, :class => "micropost_picture") unless micropost.picture.url.nil? %>
+          </a>
+          <%= render partial: 'shared/modal_micropost', :locals => { micropost: micropost } %>
+        <% end %>
+      <% end %>
+    </div>
+    <%= will_paginate @microposts, :previous_label => ' &lt 前へ', :next_label => '次へ &gt', :class => "center" %>
+  </div>
+</div>

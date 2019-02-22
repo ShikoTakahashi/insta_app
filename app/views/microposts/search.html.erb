@@ -1,0 +1,23 @@
+<% provide(:title, "検索結果") %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <section class="profile_picture">
+      <%= render '/users/shared/user_profpicture'%>
+    </section>
+    <div class="Profile-name" id="side"><%= @user.user_name %></div>
+      <%= link_to 'プロフィールを編集', edit_user_registration_path,
+      class: "btn btn-primary" if @user == current_user %>
+    <%= render "/users/shared/user_info" %><br>
+    <h4><%= @user.full_name %></h4>
+    <h2>検索結果</h2>
+    <div class="microposts">
+        <% @search_microposts.each do |micropost|%>
+          <a data-toggle="modal" data-target="#<%= micropost.id %>" class="modal-open" >
+            <%= image_tag(micropost.picture.url, :class => "micropost_picture") %>
+          </a>
+          <%= render partial: 'shared/modal_micropost', :locals => { micropost: micropost } %>
+        <% end %>
+    </div>
+    <%= will_paginate @search_microposts, :previous_label => ' &lt 前へ', :next_label => '次へ &gt', :class => "center" %>
+  </div>
+</div>
