@@ -3,7 +3,7 @@ FactoryBot.define do
     full_name { "testuser" }
     user_name { "test" }
     email { "test@test.com" }
-    password { "foobar" }
+    password { "testuser" }
     provider { "facebook" }
     uid { "12345678910" }
 
